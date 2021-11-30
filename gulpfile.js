@@ -50,7 +50,7 @@ function scripts() {
 
 function startwatch() {
     watch([path.src.js], scripts);
-    watch([path.src.pug], pugconverter);
+    //watch([path.src.pug], pugconverter);
     watch([path.src.less], styles);
 
 }
@@ -67,4 +67,4 @@ function styles() {
 }
 
 
-exports.default = parallel(scripts, styles, browsersync, startwatch, pugconverter);
+exports.default = parallel(scripts, styles, browsersync, startwatch);

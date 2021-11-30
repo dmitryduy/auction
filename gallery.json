@@ -1,0 +1,10 @@
+[
+  {
+    "title": "2 Красных мяча",
+    "author": "Иван Плющ",
+    "image": "https://artzip.ru/upload/resize_cache/iblock/5d3/540_1000_0/5d3e723c1e8ff13a1e270383c4746dd3.jpg",
+    "startPrice": 2000,
+    "minStep": 5,
+    "maxStep": 10
+  }
+]

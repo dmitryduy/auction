@@ -8,16 +8,20 @@ const options = {
     key: fs.readFileSync('./certificates/privatekey.key'),
     cert: fs.readFileSync('./certificates/certificate.crt')
 };
+
+const books = JSON.parse(fs.readFileSync('./gallery.json'));
+
 https.createServer(options, app).listen(443);
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/dist'));
 
+app.set('view engine', 'pug');
+
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/dist/" + "index.html");
-})
+    res.render("index", {books});
+
+});
 
 
 
-
-app.listen(3000, () => console.log('server start'))
