@@ -1,7 +1,8 @@
-.flex(@justify:center, @direction:row) {
+.flex(@justify:center, @direction:row, @align: none) {
   display: flex;
   justify-content: @justify;
   flex-direction: @direction;
+  align-items: @align;
 }
 
 .text(@color, @font-size, @font-weight: normal, @margin: 0) {

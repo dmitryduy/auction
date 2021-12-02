@@ -10,6 +10,7 @@ const options = {
 };
 
 const books = JSON.parse(fs.readFileSync('./gallery.json'));
+const auctionInfo = JSON.parse(fs.readFileSync('./auctionInfo.json'));
 
 https.createServer(options, app).listen(443);
 
@@ -22,6 +23,14 @@ app.get('/', (req, res) => {
     res.render("index", {books});
 
 });
+
+app.get('/painting/:id', (req, res) => {
+   res.render("painting", {painting: books.find(book => book.id === +req.params.id)}) ;
+});
+
+app.get('/auction-info', (req, res) => {
+    res.json(auctionInfo);
+})
 
 
 

@@ -1,0 +1,147 @@
+@import "mixins";
+@import "variables";
+
+.card-info {
+  background-color: #fff;
+  box-shadow: 0.05rem 0.1rem 0.3rem rgb(10 31 68 / 10%);
+  padding: 20px;
+  margin-bottom: 40px;
+  .top {
+    position: relative;
+    padding-bottom: 20px;
+  }
+
+  .top:after {
+    position: absolute;
+    content: ' ';
+    width: calc(100% + 20px);
+    left: -10px;
+    bottom: 0;
+    height: 2px;
+    background-color: @bg-color;
+  }
+  .bottom {
+    padding-top: 20px;
+  }
+}
+
+.header {
+  &__title {
+    .text(@dark_blue, 25px, 400);
+  }
+
+  &__content {
+    .flex(start);
+    margin-bottom: 10px;
+  }
+
+  &__author, &__country {
+    .text(@gray, 16px);
+  }
+
+  &__author {
+    margin-right: 10px;
+  }
+}
+
+.painting-content {
+  .flex(space-between);
+}
+
+.main {
+  width: 55%;
+
+  &__image {
+    width: 100%;
+    object-fit: contain;
+    margin-bottom: 40px;
+  }
+}
+
+.aside {
+  width: 40%;
+}
+.description__title {
+  .text(@dark_blue, 30px, 500);
+}
+
+
+
+.bid-and-date {
+  margin-bottom: 40px;
+  &__remain {
+    .text(@dark_blue, 14px, bold, 0 0 10px);
+  }
+
+  .timer {
+    .flex(space-evenly);
+    &>div {
+      .flex(@direction: column, @align: center);
+      height: 50px;
+      width: 70px;
+      background-color: #f1f2f4;
+      font-size: 16px;
+      padding: 10px;
+      color: @dark_blue;
+      font-weight: 500;
+    }
+  }
+}
+
+.bid {
+  &__info {
+    .flex(space-between);
+    margin-bottom: 5px;
+    p:first-child {
+      .text(@gray, 15px);
+    }
+    p:last-child {
+      .text(#a6aebc, 15px);
+    }
+  }
+  &__price {
+    .text(@dark_blue, 30px, bold, 0 0 10px);
+  }
+}
+
+.auction-info {
+  &__title {
+    .text(@dark_blue, 20px);
+  }
+  &__start-date, &__end-date {
+    span:first-child {
+      .text(@dark_blue, 16px, bold, 0 5px 0 0);
+    }
+    span:last-child {
+      .text(@gray, 16px, bold);
+    }
+  }
+}
+
+.editing {
+  &__title {
+    .text(@dark_blue, 20px, bold);
+  }
+  &__field {
+    margin-bottom: 10px;
+    .flex();
+    div {
+      width: 100%;
+      overflow: hidden;
+      padding: 10px 0 10px 10px;
+      font-size: 16px;
+      border: 1px solid transparent;
+      outline: none;
+      margin-left: 5px;
+      border-radius: 5px;
+    }
+    div:focus {
+      border: 1px solid @gray;
+    }
+  }
+
+  &__attr-name {
+    padding: 10px 0;
+    .text(@dark_blue, 16px, @font-weight: bold);
+  }
+}
