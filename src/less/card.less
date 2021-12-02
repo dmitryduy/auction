@@ -1,0 +1,38 @@
+@import "variables";
+@import "mixins";
+
+.card {
+  width: 20%;
+  box-shadow: 0 0.3rem 0.5rem rgb(10 31 68 / 18%);
+  background-color: #fff;
+  cursor: pointer;
+  &__image {
+    width: 100%;
+  object-fit: contain;
+  }
+  &__content {
+    padding: 10px;
+  }
+  &__title {
+    .text(@dark_blue, 16px, bold, 0 0 5px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &__author ,&__country, &__price {
+    .text(@gray, 13px, @margin: 0 0 2px);
+  }
+  &__price {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  &__steps {
+    .flex(space-between);
+    .text(@gray, 15px, @margin: 0 0 10px);
+  }
+  .available {
+    .text(@green, 15px, bold);
+  }
+  .not-available {
+    .text(@red, 15px, bold);
+  }
+}
