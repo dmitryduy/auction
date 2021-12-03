@@ -1,0 +1,59 @@
+head
+    title Аукцион
+    link(rel='stylesheet', href='/css/index.min.css', type='text/css')
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
+body
+    form.edit-user
+        img.edit-close-icon(src='/imgs/close-icon.svg')
+        h2.edit-user__title Редактирование
+        label(for='edit-name') Имя:
+        input.edit-user__name(type='text' id='edit-name' required=true)
+        label(for='edit-email') E-mail:
+        input.edit-user__email(type='email' id='edit-email' required=true)
+        label(for='edit-money') Сумма денег($):
+        input.edit-user__money(type='number' id='edit-money' required=true)
+        .edit-user__participate
+            .edit-participate.active-edit(data-participate='1') Участвует
+            .edit-not-participate(data-participate='') Не участвует
+        button.button.edit-user__button Редактировать
+    form.add-user
+        img.close-icon(src='/imgs/close-icon.svg')
+        h2.add-user__title Добавление пользователя
+        label(for='name') Имя:
+        input.add-user__name(type='text' id='name' required=true)
+        label(for='email') E-mail:
+        input.add-user__email(type='email' id='email' required=true)
+        label(for='money') Сумма денег($):
+        input.add-user__money(type='number' id='money' required=true)
+        .add-user__participate
+            .participate.active(data-participate='1') Участвует
+            .not-participate(data-participate='') Не участвует
+        button.button.add-user__button Добавить
+
+    .container
+        .table
+            .table__header
+                h1.table__title Пользователи
+                button.table__button.button Добавить пользователя
+
+            header.user-header
+                li Имя
+                li Участие в аукционе
+                li Сумма
+                li
+            each user in users
+                .user(id=user.id)
+                    li.user__name
+                        img.image(src=user.image alt=user.name)
+                        .user__info
+                            h5.user__title= user.name
+                            p.user__email= user.email
+                    li.user__participate(class= user.participate ? 'green' : 'red')
+                    li.user__money $#{user.money}
+                    li.user__menu
+                        img.user__menu-icon(src='https://image.flaticon.com/icons/png/512/64/64576.png')
+                        .user__context-menu
+                            p.delete_user Удалить
+                            p.edit-user-button Изменить
+
+    script(src='/js/users.js')

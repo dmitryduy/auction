@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Alex",
+    "email": "sdlkfj@gmail.com",
+    "participate": true,
+    "money": 2000,
+    "image": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+  },
+  {
+    "id": 2,
+    "name": "Roma",
+    "email": "ssdfkfj@gmail.com",
+    "participate": true,
+    "money": 20600,
+    "image": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+  },
+  {
+    "id": 3,
+    "name": "Rexa",
+    "email": "sdlkfj@rambler.ru",
+    "participate": true,
+    "money": 2000,
+    "image": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+  },
+  {
+    "id": 4,
+    "name": "Pets",
+    "email": "kfj@rambler.ru",
+    "participate": false,
+    "money": 233000,
+    "image": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+  }
+]

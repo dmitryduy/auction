@@ -1,0 +1,13 @@
+.user(id=user.id)
+    li.user__name
+        img.image(src=user.image alt=user.name)
+        .user__info
+            h5.user__title= user.name
+            p.user__email= user.email
+    li.user__participate(class= user.participate ? 'green' : 'red')
+    li.user__money $#{user.money}
+    li.user__menu
+        img.user__menu-icon(src='https://image.flaticon.com/icons/png/512/64/64576.png')
+        .user__context-menu
+            p.delete_user Удалить
+            p Изменить

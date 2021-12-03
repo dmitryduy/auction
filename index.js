@@ -3,6 +3,7 @@ const app = express();
 const fs = require('fs');
 const https = require("https");
 const bodyParser = require('body-parser');
+const pug = require('pug');
 
 const options = {
     key: fs.readFileSync('./certificates/privatekey.key'),
@@ -11,6 +12,7 @@ const options = {
 
 const books = JSON.parse(fs.readFileSync('./gallery.json'));
 const auctionInfo = JSON.parse(fs.readFileSync('./auctionInfo.json'));
+let users = JSON.parse(fs.readFileSync('./users.json'));
 
 https.createServer(options, app).listen(443);
 
@@ -34,7 +36,7 @@ app.get('/auction-info', (req, res) => {
 
 app.put('/editing', (req, res) => {
     const {id, title, author, country, price, photo, available, minStep, maxStep} = req.body;
-    if (Number.isNaN(+price) || +price <=0) {
+    if (Number.isNaN(+price) || +price <= 0) {
         res.status(400);
         res.end('Неверно установлена цена');
     }
@@ -42,7 +44,7 @@ app.put('/editing', (req, res) => {
         res.status(400);
         res.end('Поле "В аукциое?" должно принимать одно из двух значений: "true", "false"');
     }
-    if (!title || !author || !country || ! available || !photo || !price || !minStep || !maxStep) {
+    if (!title || !author || !country || !available || !photo || !price || !minStep || !maxStep) {
         res.status(400);
         res.end('Есть незаполненные поля');
     }
@@ -72,3 +74,36 @@ app.put('/editing', (req, res) => {
 })
 
 
+app.get('/users', (req, res) => {
+    res.render('users', {users});
+});
+
+app.delete('/users', (req, res) => {
+    const {id} = req.body;
+    users = users.filter(user => user.id !== +id);
+    res.send('success');
+});
+
+app.put('/users', (req, res) => {
+    const {name, email, money, participate} = req.body;
+    const id = users[users.length - 1].id + 1;
+    users.push({
+        id,
+        name,
+        email,
+        participate,
+        money,
+        image: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+    })
+    res.end(pug.renderFile('views/user.pug', {user: users[users.length - 1]}));
+})
+
+app.put('/users-edit', (req, res) => {
+    const {id, name, email, money, participate} = req.body;
+    const user = users.find(user => user.id === +id);
+    user.name = name;
+    user.email = email;
+    user.money = money;
+    user.participate = participate;
+    res.send('success');
+})

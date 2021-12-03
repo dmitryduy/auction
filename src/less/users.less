@@ -1,0 +1,190 @@
+@import "mixins";
+@import "variables";
+
+.table {
+
+  max-height: 1000px;
+  .flex(@direction: column);
+  padding: 30px 40px;
+  background-color: #fff;
+  transition: .2s;
+  &__header {
+    .flex(space-between);
+  }
+  &__button {
+    width: 20%;
+    font-size: 16px;
+  }
+  &__title {
+    .text(@dark_blue, 30px, bold, 0 0 40px);
+  }
+  .user-header {
+    .text(@gray, 16px, bold, 0 0 20px);
+  }
+  .user-header, .user {
+    .flex(space-between);
+    li {
+      text-align: left;
+    }
+    &>li:first-child {
+      flex-basis: 30%;
+    }
+    &>li:last-child {
+      flex-basis: 20px;
+    }
+    &>li:nth-child(2) {
+      flex-basis: 30%;
+    }
+    &>li:nth-child(3) {
+      flex-basis: 30%;
+    }
+  }
+}
+
+.add-user, .edit-user {
+  position: fixed;
+  z-index: 500;
+  background-color: #fff;
+  left: 0;
+  top: 50%;
+  transform: translate(-110%, -50%);
+  width: 30%;
+  min-width: 400px;
+  max-width: 800px;
+  box-shadow: 0 0.3rem 0.5rem rgb(10 31 68 / 18%);
+  padding: 100px 20px;
+  transition:  .2s;
+  border-radius: 0 20px 20px 0;
+  &.visible {
+    transform: translate(0, -50%);
+  }
+  .close-icon, .edit-close-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: @blue;
+    cursor: pointer;
+    border-radius: 0 20px 0 20px;
+    width: 40px;
+    transition: .1s;
+    &:hover {
+      transform:scale(1.2);
+    }
+  }
+  &__title {
+    text-align: center;
+    .text(@dark_blue, 25px, bold, 0 0 20px);
+  }
+  .flex(@direction: column);
+  label {
+    .text(@gray, 16px, bold, 0 0 10px);
+  }
+  input {
+    padding: 5px 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 2px solid @bg-color;
+    outline: none;
+    border-radius: 2px;
+    &:focus {
+      border: 2px solid @dark_blue
+    }
+  }
+  &__participate {
+    .flex(space-evenly);
+    margin-bottom: 20px;
+    div {
+      outline: none;
+      background-color: transparent;
+      padding: 10px;
+      border-radius: 5px;
+      border: 2px solid @dark_blue;
+      font-weight: 500;
+      transition: background-color .2s;
+      cursor: pointer;
+    }
+    .participate.active, .edit-participate.active-edit {
+      background-color: @green;
+      color: #fff;
+      border: 2px solid transparent;
+    }
+    .not-participate.active, .edit-not-participate.active-edit {
+      background-color: @red;
+      color: #fff;
+      border: 2px solid transparent;
+    }
+  }
+}
+
+.user {
+  margin-bottom: 20px;
+  .image {
+    width: 40px;
+    object-fit: contain;
+    margin-right: 20px;
+  }
+  &__menu-icon {
+    width: 15px;
+    object-fit: contain;
+    cursor: pointer;
+
+  }
+  &__menu {
+    position: relative;
+    &:hover>div {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  &__context-menu {
+    position: absolute;
+    box-shadow: 0 0.3rem 0.5rem rgb(10 31 68 / 18%);
+    border-radius: 2px;
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: .2s;
+
+    p {
+      cursor: pointer;
+      padding: 5px 15px;
+      .text(@gray, 14px);
+      &:hover {
+        background-color: #f1f2f4;
+      }
+    }
+  }
+  &__name {
+    .flex(start);
+  }
+  &__title {
+    .text(@dark_blue, 16px, bold, 0 0 2px);
+  }
+  &__email {
+    .text(@gray, 12px);
+  }
+  &__participate {
+    position: relative;
+    &:before {
+      position: absolute;
+      color: #fff;
+      text-align: center;
+      padding: 5px 20px;
+      width: 40%;
+      left: 0;
+
+    }
+
+    &.green:before{
+      content: 'Участвует';
+      background-color: @green;
+    }
+    &.red:before{
+      content: 'Не участвует';
+      background-color: @red;
+    }
+  }
+  &__money {
+    text-align: left;
+  }
+}
