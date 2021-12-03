@@ -4,7 +4,7 @@ head
 body
     .container
         .cards-container
-            .card
+            a.card(href=`/painting/${books[0].id}`)
                 img.card__image(src=books[0].image alt=books[0].title)
                 .card__content
                     h2.card__title= books[0].title

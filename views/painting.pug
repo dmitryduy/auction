@@ -2,15 +2,18 @@ head
     title Аукцион
     link(rel='stylesheet', href='/css/index.min.css', type='text/css')
 body
+    .success-popup Данные успешно изменены
     .container
         header.header
             h1.header__title= painting.title
             .header__content
                 span.header__author= painting.author
                 span.header__country= painting.country
-        .painting-content
+        .painting-content(id=painting.id)
             main.main
-                img.main__image(src=painting.image alt=painting.title)
+                div(class=`image ${painting.available ? 'available' : 'not-available'}`
+                    data-available=painting.available ? 'В аукционе': 'Не в аукционе')
+                    img.main__image(src=painting.image alt=painting.title height=600)
                 .desctiption.card-info
                     .top.description__title Описание
                     p.bottom.description__content= painting.desc
@@ -20,22 +23,25 @@ body
                         p.bid-and-date__remain Auction Ends: Dec 2, 2021
                         .timer
                             .time__day
-                                span
+                                span 0
                                 span days
                             .time__hour
-                                span
+                                span 0
                                 span hrs
                             .time__minute
-                                span
+                                span 0
                                 span mins
                             .time__second
-                                span
+                                span 0
                                 span secs
                     .bottom.bid
                         .bid__info
                             p Текущая цена
                             p Никто не поставил
                         .bid__price $ #{painting.startPrice}
+                        .min-max-bids
+                            p.min-bid Мин. шаг: $#{painting.minStep}
+                            p.max-bid Макс. шаг: $#{painting.maxStep}
                         button.bid__button.button Поставить
                 .auction-info.card-info
                     .top
@@ -54,21 +60,30 @@ body
                     .bottom.editing__content
                         .editing__field
                             p.editing__attr-name Название:
-                            div(contenteditable='true')= painting.title
+                            div.editing__name(contenteditable='true')= painting.title
                         .editing__field
                             p.editing__attr-name Автор:
-                            div(contenteditable='true')= painting.author
+                            div.editing__author(contenteditable='true')= painting.author
                         .editing__field
                             p.editing__attr-name Страна:
-                            div(contenteditable='true')= painting.country
+                            div.editing__country(contenteditable='true')= painting.country
                         .editing__field
                             p.editing__attr-name Цена($):
 
-                            div(contenteditable='true')= painting.startPrice
+                            div.editing__price(contenteditable='true')= painting.startPrice
                         .editing__field
                             p.editing__attr-name Фото:
-                            div(contenteditable='true')= painting.image
-                        button.button Редактировать
+                            div.editing__photo(contenteditable='true')= painting.image
+                        .editing__field
+                            p.editing__attr-name Мин. шаг($):
+                            div.editing__min-step(contenteditable='true')= painting.minStep
+                        .editing__field
+                            p.editing__attr-name Макс. шаг($):
+                            div.editing__max-step(contenteditable='true')= painting.maxStep
+                        .editing__field
+                            p.editing__attr-name В аукционе?:
+                            div.editing__available(contenteditable='true')= painting.available
+                        button.button.editing__button Редактировать
 
 
 

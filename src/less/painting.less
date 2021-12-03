@@ -1,6 +1,29 @@
 @import "mixins";
 @import "variables";
 
+.success-popup {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  padding: 20px 50px;
+  color: #fff;
+  border-radius: 0 0 20px 20px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  transition:  1s ease;
+  opacity: 0;
+  &.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    background-color: @green;
+  }
+  &.show-incorrect {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    background-color: @red;
+  }
+}
+
 .card-info {
   background-color: #fff;
   box-shadow: 0.05rem 0.1rem 0.3rem rgb(10 31 68 / 10%);
@@ -50,9 +73,26 @@
 
 .main {
   width: 55%;
-
+  .image {
+    position: relative;
+    &::before {
+      content: attr(data-available);
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 10px;
+      color: #fff;
+    }
+    &.available::before {
+      background-color: @green;
+    }
+    &.not-available::before{
+      background-color: @red;
+    }
+  }
   &__image {
     width: 100%;
+    max-height: 600px;
     object-fit: contain;
     margin-bottom: 40px;
   }
@@ -86,6 +126,11 @@
       font-weight: 500;
     }
   }
+}
+
+.min-max-bids {
+  .flex(space-between);
+  .text(@gray, 16px, @margin: 0 0 10px);
 }
 
 .bid {
@@ -125,6 +170,7 @@
   &__field {
     margin-bottom: 10px;
     .flex();
+
     div {
       width: 100%;
       overflow: hidden;
@@ -142,6 +188,8 @@
 
   &__attr-name {
     padding: 10px 0;
+    white-space: nowrap;
     .text(@dark_blue, 16px, @font-weight: bold);
   }
+
 }
