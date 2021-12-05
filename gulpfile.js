@@ -35,14 +35,10 @@ function pugconverter() {
 }
 
 function scripts() {
-    return src([
-        'node_modules/jquery/dist/jquery.min.js',
-        path.src.js,
-    ])
+    return src(path.src.js)
         .pipe(babel({
             presets: ["@babel/preset-env"]
         }))
-        .pipe(concat('app.min.js'))
         .pipe(uglify())
         .pipe(dest(path.dest.js))
         .pipe(browserSync.stream())

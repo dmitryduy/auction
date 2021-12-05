@@ -39,3 +39,27 @@ a {
 li {
   list-style: none;
 }
+
+.navigator {
+  .flex(start);
+  padding: 20px 0 0;
+  a {
+    .text(@dark_blue, 20px, bold, 0 10px 0);
+    border: 1px solid @dark_blue;
+    padding: 10px;
+    transition: .2s;
+    &:hover {
+      background-color: @blue;
+      color: #fff;
+    }
+  }
+}
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.cards-title {
+  .text(@dark_blue, 30px, bold, 0 0 30px);
+}

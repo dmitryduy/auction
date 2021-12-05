@@ -1,7 +1,13 @@
+- let months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июня", "Августа", "Сентября", "Октября", "Ноября", "Декабря"]
+
 head
     title Аукцион
     link(rel='stylesheet', href='/css/index.min.css', type='text/css')
 body
+    nav.navigator
+        a(href='/') Главная
+        a(href='/users') Пользователи
+        a(href='/settings') Настройки
     .success-popup Данные успешно изменены
     .container
         header.header
@@ -20,7 +26,7 @@ body
             aside.aside
                 .bid-and-date.card-info
                     .top
-                        p.bid-and-date__remain Auction Ends: Dec 2, 2021
+                        p.bid-and-date__remain До начала аукциона:
                         .timer
                             .time__day
                                 span 0
@@ -50,10 +56,10 @@ body
                     .bottom
                         .auction-info__start-date
                             span Начало аукциона:
-                            span 14 ноября 2021
+                            span #{new Date(auctionInfo.auctionStartDate).getDate()} #{months[new Date(auctionInfo.auctionStartDate).getMonth()]} #{new Date(auctionInfo.auctionStartDate).getFullYear()} #{new Date(auctionInfo.auctionStartDate).getHours()}:#{new Date(auctionInfo.auctionStartDate).getMinutes()}
                         .auction-info__end-date
                             span Конец аукциона:
-                            span 15 ноября 2021
+                            span #{new Date(auctionInfo.auctionEndDate).getDate()} #{months[new Date(auctionInfo.auctionEndDate).getMonth()]} #{new Date(auctionInfo.auctionEndDate).getFullYear()} #{new Date(auctionInfo.auctionEndDate).getHours()}:#{new Date(auctionInfo.auctionEndDate).getMinutes()}
                 .editing.card-info
                     .top.editing__title
                         h3 Редактирование картины

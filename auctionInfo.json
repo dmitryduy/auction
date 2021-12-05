@@ -1,4 +1,7 @@
 {
-  "auctionStartDate": "2021/10/05 12:30",
-  "auctionEndDate": "2021/12/2 16:24"
+  "auctionStartDate": "2021-12-05 12:30",
+  "auctionEndDate": "2021/12/10 16:24",
+  "timeout": "00:30",
+  "interval": "00:30",
+  "stop": "00:30"
 }

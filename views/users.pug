@@ -3,6 +3,10 @@ head
     link(rel='stylesheet', href='/css/index.min.css', type='text/css')
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
 body
+    nav.navigator
+        a(href='/') Главная
+        a(href='/users') Пользователи
+        a(href='/settings') Настройки
     form.edit-user
         img.edit-close-icon(src='/imgs/close-icon.svg')
         h2.edit-user__title Редактирование

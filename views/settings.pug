@@ -1,0 +1,24 @@
+head
+    title Аукцион
+    link(rel='stylesheet', href='/css/index.min.css', type='text/css')
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
+body
+    nav.navigator
+        a(href='/') Главная
+        a(href='/users') Пользователи
+        a(href='/settings') Настройки
+    .container.settings-container
+        .settings
+            header.settings__title Настройки аукциона
+            p.settings__date Дата аукциона
+            input.settings__date-input(type='date' value= new Date(auctionInfo.auctionStartDate).toJSON().slice(0, 10))
+            p.settings__time Время аукциона
+            input.settings__time-input(type='time' value= new Date(auctionInfo.auctionStartDate).toTimeString().toString().slice(0, 5))
+            p.settings__timeout Таймоут картины
+            input.settings__timeout-input(type='time' value=auctionInfo.timeout)
+            p.settings__interval Интервал времени отсчета до окончания торга по картине
+            input.settings__interval-input(type='time' value=auctionInfo.interval)
+            p.settings__stop Пауза на изучение информации по картине
+            input.settings__stop-input(type='time' value=auctionInfo.stop)
+            button.button.settings__button Изменить
+    script(src='/js/settings.js')

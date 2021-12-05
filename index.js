@@ -10,7 +10,7 @@ const options = {
     cert: fs.readFileSync('./certificates/certificate.crt')
 };
 
-const books = JSON.parse(fs.readFileSync('./gallery.json'));
+const paintings = JSON.parse(fs.readFileSync('./gallery.json'));
 const auctionInfo = JSON.parse(fs.readFileSync('./auctionInfo.json'));
 let users = JSON.parse(fs.readFileSync('./users.json'));
 
@@ -22,12 +22,12 @@ app.use(express.static(__dirname + '/dist'));
 app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
-    res.render("index", {books});
+    res.render("index", {paintings});
 
 });
 
 app.get('/painting/:id', (req, res) => {
-    res.render("painting", {painting: books.find(book => book.id === +req.params.id)});
+    res.render("painting", {painting: paintings.find(book => book.id === +req.params.id), auctionInfo});
 });
 
 app.get('/auction-info', (req, res) => {
@@ -56,7 +56,7 @@ app.put('/editing', (req, res) => {
         res.status(404);
         res.end(`Минимальный шаг должен быть меньше максимального шага`);
     }
-    const painting = books.find(painting => painting.id === +id);
+    const painting = paintings.find(painting => painting.id === +id);
     if (!painting) {
         res.status(404);
         res.end(`Такая картина не найдена`);
@@ -105,5 +105,18 @@ app.put('/users-edit', (req, res) => {
     user.email = email;
     user.money = money;
     user.participate = participate;
+    res.send('success');
+})
+
+app.get('/settings', (req, res) => {
+    res.render('settings', {auctionInfo})
+})
+
+app.put('/settings', (req, res) => {
+    const {auctionStartDate, timeout, interval, stop} = req.body;
+    auctionInfo.auctionStartDate = auctionStartDate;
+    auctionInfo.timeout = timeout;
+    auctionInfo.interval = interval;
+    auctionInfo.stop = stop;
     res.send('success');
 })

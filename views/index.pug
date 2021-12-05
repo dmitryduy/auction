@@ -2,17 +2,23 @@ head
     title Аукцион
     link(rel='stylesheet', href='/css/index.min.css', type='text/css')
 body
+    nav.navigator
+        a(href='/') Главная
+        a(href='/users') Пользователи
+        a(href='/settings') Настройки
     .container
+        .cards-title Галерея
         .cards-container
-            a.card(href=`/painting/${books[0].id}`)
-                img.card__image(src=books[0].image alt=books[0].title)
-                .card__content
-                    h2.card__title= books[0].title
-                    p.card__author= books[0].author
-                    p.card__country= books[0].country
-                    p.card__price= `${books[0].startPrice}$`
-                    .card__steps
-                        p.card__min-step= `Min step: ${books[0].minStep}$`
-                        p.card__max-step= `Max step: ${books[0].maxStep}$`
-                    span(class=`card__in-auction ${books[0].available ? 'available' : 'not-available'}`)= books[0].available ? 'В аукционе': 'Не в аукционе'
+            each painting in paintings
+                a.card(href=`/painting/${painting.id}`)
+                    img.card__image(src=painting.image alt=painting.title)
+                    .card__content
+                        h2.card__title= painting.title
+                        p.card__author= painting.author
+                        p.card__country= painting.country
+                        p.card__price= `${painting.startPrice}$`
+                        .card__steps
+                            p.card__min-step= `Min step: ${painting.minStep}$`
+                            p.card__max-step= `Max step: ${painting.maxStep}$`
+                        span(class=`card__in-auction ${painting.available ? 'available' : 'not-available'}`)= painting.available ? 'В аукционе': 'Не в аукционе'
     script(src='/js/app.min.js')
