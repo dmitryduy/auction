@@ -1,6 +1,7 @@
 head
     title Аукцион
     link(rel='stylesheet', href='/css/index.min.css', type='text/css')
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
 body
     nav.navigator
         a(href='/') Главная
@@ -21,4 +22,4 @@ body
                             p.card__min-step= `Min step: ${painting.minStep}$`
                             p.card__max-step= `Max step: ${painting.maxStep}$`
                         span(class=`card__in-auction ${painting.available ? 'available' : 'not-available'}`)= painting.available ? 'В аукционе': 'Не в аукционе'
-    script(src='/js/app.min.js')
+    script(src='/js/index.js')

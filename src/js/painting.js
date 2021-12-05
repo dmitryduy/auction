@@ -19,7 +19,6 @@ $(document).ready(() => {
     });
 
     let endTimer = false;
-
     $('.editing__button').click(() => {
         if (!endTimer) {
             endTimer = true;

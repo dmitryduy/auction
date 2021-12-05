@@ -12,7 +12,6 @@ const dist = './dist';
 const srcPath = './src';
 const path = {
     src: {
-        pug: srcPath + '/pug/*.pug',
         js: srcPath + '/js/*.js',
         less: srcPath + '/less/*.less'
     },
@@ -28,14 +27,9 @@ function browsersync() {
     })
 }
 
-function pugconverter() {
-    return src(path.src.pug)
-        .pipe(pug())
-        .pipe(dest(dist));
-}
 
 function scripts() {
-    return src(path.src.js)
+    return src(['src/js/index.js', 'src/js/painting.js', 'src/js/users.js', 'src/js/settings.js'])
         .pipe(babel({
             presets: ["@babel/preset-env"]
         }))
@@ -46,7 +40,6 @@ function scripts() {
 
 function startwatch() {
     watch([path.src.js], scripts);
-    //watch([path.src.pug], pugconverter);
     watch([path.src.less], styles);
 
 }
